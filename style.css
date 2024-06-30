@@ -1,0 +1,8 @@
+body {
+        margin: auto;
+        width: 95%;
+}
+p {
+        text-align: justify;
+        text-justify: inter-word;
+}
