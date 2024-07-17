@@ -1,8 +1,20 @@
-body {
+body 
+{
         margin: auto;
         width: 95%;
 }
-p {
+p 
+{
         text-align: justify;
         text-justify: inter-word;
+}
+.collapsible 
+{
+        cursor: pointer;
+}
+.content 
+{
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
 }
