@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-         <link rel="stylesheet" type="text/css" href="style.css"> 
-         <link rel="icon" href="pics/logo.png" type="image/png"> 
-         <title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css"> 
+        <link rel="icon" href="pics/logo.png" type="image/png"> 
+        <title>
                 M.G. Kenins
-         </title>
+        </title>
+        <script 
+                src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
 </head>
 <body>
         <center>
                 <a href="index.html">Home</a> | 
                 <a href="education.html">Education</a> |
+                <a href="teaching.html">Teaching (course notes)</a> | 
                 <a href="positions.html">Positions</a> |
                 <a href="mentorships.html">Mentorships</a> |
                 <a href="publications.html">Publications</a> |
@@ -19,6 +24,7 @@
                 <a href="olympiad-org.html">Olympiad organisation</a> |
                 <a href="achievements.html">Achievements</a> |
                 <a href="faq.html">FAQ</a> | 
+                <a href="wine.html">Wine reviews</a> |
                 <!-- <a href=".html"></a> | -->
                 <!-- <a href=".html"></a> | -->
                 <a href="index.html">Home</a>
@@ -62,5 +68,34 @@
                 to suggest), my every botle from now 
                 on shall be accompanied by a detailed <a href="wine.html">wine review</a>.
         </p>
+        <p class="date">
+                Last modified on...
+        </p>
+        <script>
+                const desiredRepo = "mgkenins.github.io";
+                const dateTagClass = ".date"; // The HTML element you want to update
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function()
+                {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                let repos = JSON.parse(this.responseText);
+
+                repos.forEach((repo)=>{
+                if (repo.name == desiredRepo)
+                {
+                        var lastUpdated = new Date(repo.updated_at);
+                        var day = lastUpdated.getUTCDate();
+                        var month = lastUpdated.getUTCMonth();
+                        var year = lastUpdated.getUTCFullYear();
+                        $(dateTagClass).text(`Last updated: ${year}-${month}-${day}`);
+                }
+                });
+                }
+                };
+                xhttp.open("GET", "https://api.github.com/users/YOUR_USERNAME/repos", true);
+                xhttp.send();
+        </script>
 </body>
 </html>
