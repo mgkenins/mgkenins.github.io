@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css"> 
+        <link rel="icon" href="pics/logo.png" type="image/png"> 
+        <title>
+                M.G. Kenins
+        </title>
+        <script 
+                src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+</head>
+<body>
+        <center>
+                <a href="index.html">Home</a> | 
+                <a href="notes.html">Course &amp; other notes</a> |
+                <a href="reading.html">Recommended reading</a> |
+                <!-- <a href="olympiads.html">Olympiads</a> | -->
+                <a href="wine.html">Wine reviews</a> |
+                <!-- <a href=".html"></a> | -->
+                <!-- <a href=".html"></a> | -->
+                <a href="index.html">Home</a>
+        </center>
+
+        <center>
+                <h1>Course &amp; other notes</h1>
+                <h2>Markuss G. Ķēniņš</h2>
+        </center>
+        
+        <h3>Physical</h3>
+        <ol>
+                <li>
+                        Special relativity recapitulation notes <a href="pdfs/mnrnotes-18.pdf">pdf</a>.
+                </li>
+        </ol>
+
+        <script>
+                const desiredRepo = "mgkenins.github.io";
+                const dateTagClass = ".date"; // The HTML element you want to update
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function()
+                {
+                if (this.readyState == 4 && this.status == 200)
+                {
+                let repos = JSON.parse(this.responseText);
+
+                repos.forEach((repo)=>{
+                if (repo.name == desiredRepo)
+                {
+                        var lastUpdated = new Date(repo.updated_at);
+                        var day = lastUpdated.getUTCDate();
+                        var month = lastUpdated.getUTCMonth();
+                        var year = lastUpdated.getUTCFullYear();
+                        $(dateTagClass).text(`Last modified on: ${day}-${month}-${year}`);
+                }
+                });
+                }
+                };
+                xhttp.open("GET", "https://api.github.com/users/mgkenins/repos", true);
+                xhttp.send();
+        </script>
+</body>
+</html>
